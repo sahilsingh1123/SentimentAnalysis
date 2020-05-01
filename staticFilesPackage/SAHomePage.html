@@ -1,0 +1,37 @@
+{% load static %}
+{% csrf_token %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title> SA | Homepage </title>
+</head>
+<body>
+    <div class="main_page" style="width: 100%; overflow: auto; background-color: #fcf8e3; height: 650px;">
+        <div class="sentiment_title" >
+           <h1> <label style="margin: auto; padding: 10px 10px; font-size: 20px"> Sentiment Analysis </label> </h1>
+        </div>
+        <section id="showcase">
+            <div style="width: 90%;">
+            <div class="sentiment_text" style="width: 90%">
+                <textarea id="text_area" rows="7" cols="9" maxlength="1000" wrap="soft" placeholder="enter your text"
+                style="width: 80%; margin-left: 5px; min-height: 450px" ></textarea>
+            </div>
+            <div style="height: 5px"></div>
+            <div >
+                {% csrf_token %}
+                <button id="SAAnalyze" type="submit" style="font-size: 20px; padding: 10px 10px; color: #4CAF50; margin: 4px 2px;">Analyse</button>
+            </div>
+            <div>
+                <input id="sentimentResultDisplay">
+            </div>
+            </div>
+        </section>
+    </div>
+<script src="{%  static  'js/jquery-3.5.0.js' %} "></script>
+<script src="{%  static  'js/jquery-3.2.1.min.js' %} "></script>
+<script src="{%  static  'js/SAHomePage.js' %}"></script>
+</body>
+</html>
