@@ -4,14 +4,16 @@ var Analyze = $("#SAAnalyze");
 Analyze.on("click", function () {
     sentimentVar = $('#text_area').val();
     //loadPage('index.html') //--> will get back to it later..
-    getSentimentResult();
+    //this is for vivken sentiment only... as we add more diversity we will
+    //call different method accordingly
+    getViveknSentiment();
 });
 
 
-function getSentimentResult() {
+function getViveknSentiment() {
     $.ajax({
         type: 'POST',
-        url: '/sentimentResult/',
+        url: '/sentimentResult/viveknSentiment',
         data:{
             sentimentText: sentimentVar
         },
@@ -24,6 +26,8 @@ function getSentimentResult() {
 
 }
 
+//this method is not used for now but we will think of extending and making some
+//great use of this method too....
 function loadPage(path) {
     var response = null;
     var xhr = new XMLHttpRequest();

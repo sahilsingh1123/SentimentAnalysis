@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 from sentiment.views import SentimentAnalysis
 
 urlpatterns = [
     path('', SentimentAnalysis.sentimentHome),
-    path(r'sentimentResult/',SentimentAnalysis.sentimentResult)
+    path(r'', include('viveknSentiment.urls'))
 ]
