@@ -1,26 +1,25 @@
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from viveknSentiment.viveknConstants import viveknConstants as vc
-from mainConstants import mainConstants as mc
+from SentimentAnalysis.main.mainConstants import mainConstants as mc
 from viveknSentiment.viveknMain.viveknStart import viveknStart
-from pyspark.sql import SparkSession
-# Create your views here.
-# sparknlp.jar path need to set dynamic before committing it...
-spark = \
-    SparkSession.builder.appName('DMXPredictiveAnalytics')\
-        .config("spark.jars", "/home/fidel/cache_pretrained/sparknlpFATjar.jar")\
-        .master('local[*]').getOrCreate() #sahil- fix the sparknlpJar location
-spark.sparkContext.setLogLevel('ERROR')
+from sentiment.sentimentAnalysis.sentimentConstants import sentimentConstants as sc
+from SentimentAnalysis.main.CreateSparkSession import CreateSparkSession
+# from SentimentAnalysis.main.SigletoneClass import createSparkSessionTest
 
-class viveknViews:
+
+class ViveknViews:
     def __init__(self):
-        pass
+        self.spark = CreateSparkSession().getInstance().getSparkSession()
+        # self.spark = createSparkSessionTest().getSparkSession()
 
     @staticmethod
     @csrf_exempt
     def sentimentResult(request):
         responseData = {}
-        infoData = viveknViews.createData(request)
+        sentimentText = request.POST.get("sentimentText")
+        viveknViews = ViveknViews()
+        infoData = viveknViews.createData(sentimentText)
         try:
             responseData = viveknStart().viveknSentiment(infoData)
             responseData["run_status"] = "ERROR"
@@ -30,15 +29,16 @@ class viveknViews:
             responseData["run_status"] = "ERROR"
 
         finally:
-            #stop the sparkSession
-            spark.stop()
             return JsonResponse(responseData)
 
-    @staticmethod
-    @csrf_exempt
-    def createData(request):
-        #add the path for other things like explainDocumentDL, and viveknPretrainedModel.
-        sentimentText = request.POST.get("sentimentText")
-        infoData = {vc.SENTIMENTTEXT:sentimentText,
-                    mc.SPARK: spark}
+    """ this method needs to be written in another class. """
+    def createData(self, sentimentText):
+        infoData = {
+            vc.SENTIMENTTEXT:sentimentText,
+            vc.EXPLAINDOCPATH: "/home/fidel/cache_pretrained/explainDocumentDL",
+            vc.VIVEKNPRETRAINEDPATH: "/home/fidel/cache_pretrained/viveknPretrainedModel",
+            mc.SPARK: self.spark,
+            sc.SENTIMENTCOLNAME: "text",
+            mc.PREDICTIONCOL: "vivekn_prediction"
+        }
         return infoData

@@ -1,6 +1,6 @@
 from django.urls import path
-from viveknSentiment.views import viveknViews
+from viveknSentiment.views import ViveknViews
 
 urlpatterns = [
-    path(r'sentimentResult/viveknSentiment', viveknViews.sentimentResult)
+    path(r'sentimentResult/viveknSentiment', ViveknViews.sentimentResult)
 ]

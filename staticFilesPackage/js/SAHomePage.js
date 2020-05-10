@@ -11,6 +11,7 @@ Analyze.on("click", function () {
 
 
 function getViveknSentiment() {
+    document.getElementById('sentimentResultDisplay').value = "";
     $.ajax({
         type: 'POST',
         url: '/sentimentResult/viveknSentiment',
@@ -18,7 +19,7 @@ function getViveknSentiment() {
             sentimentText: sentimentVar
         },
         success: function (response) {
-            var result = response.result;
+            var result = response.sentiment_value;
             var message = response.message;
             document.getElementById('sentimentResultDisplay').value = result;
         }

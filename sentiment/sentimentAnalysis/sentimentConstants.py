@@ -1,0 +1,2 @@
+class sentimentConstants():
+    SENTIMENTCOLNAME = "sentimentColName"
