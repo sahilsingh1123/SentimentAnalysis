@@ -35,8 +35,8 @@ class ViveknViews:
     def createData(self, sentimentText):
         infoData = {
             vc.SENTIMENTTEXT:sentimentText,
-            vc.EXPLAINDOCPATH: "/home/fidel/cache_pretrained/explainDocumentDL",
-            vc.VIVEKNPRETRAINEDPATH: "/home/fidel/cache_pretrained/viveknPretrainedModel",
+            vc.EXPLAINDOCPATH: "/dev/dmxdeepinsight/models/explainDocumentDL",
+            vc.VIVEKNPRETRAINEDPATH: "/dev/dmxdeepinsight/models/viveknPretrainedModel",
             mc.SPARK: self.spark,
             sc.SENTIMENTCOLNAME: "text",
             mc.PREDICTIONCOL: "vivekn_prediction"

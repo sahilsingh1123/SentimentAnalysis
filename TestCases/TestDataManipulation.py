@@ -39,14 +39,14 @@
 
 ''' map function -------------------------------'''
 
-a = [1,2,3,4,5]
-b = map(lambda x: x*2, a)
-print(list(b))
-# also usig list comprehension
-c = [x*2 for x in a]
-print(c)
+# a = [1,2,3,4,5]
+# b = map(lambda x: x*2, a)
+# print(list(b))
+# # also usig list comprehension
+# c = [x*2 for x in a]
+print('test')
 
-# filter function -------------------------------
+'''filter function -------------------------------'''
 # filter(fuc, seq) must return true or false.
 # a = [1,2,3,4,5]
 # b = filter(lambda x: x%2==0, a)
@@ -100,3 +100,96 @@ for val in listStr:
         print(listStr[index])
 
 '''
+
+#################################################3
+#taking input from the user
+'''
+if __name__ == '__main__':
+    while True:
+        val = input()
+        if val.__eq__("quit"):
+            break
+        else:
+            print('input Val == :', val)
+'''
+
+###################################
+'''default dict functionality in the python'''
+from collections import defaultdict
+#
+# Dic = defaultdict()
+# print(Dic['test'])
+
+'''sub string finding in a string'''
+
+# testString = "sahil this is very bad"
+# subString = "this"
+# print(testString.find(subString))
+# if subString in testString:
+#     print('yes')
+
+'''pass by value and refrence'''
+# import copy
+# def appendNum(arr):
+#     arr.append(4)
+#     return arr
+#
+# arr = [1,2,3]
+# print(arr)
+# t = appendNum(copy.deepcopy(arr))
+# print(arr)
+# print(t)
+
+'''list pop method'''
+# l = [1,2,3]
+# l.pop(0)
+# print(l)
+
+
+'''namedtuple'''
+# from collections import namedtuple
+# Point = namedtuple('Point', ['a','b'])
+# p = Point(2,3)
+# p._asdict()
+# t = [2,3]
+# p._make(t)
+# print(p.a, p.b)
+
+'''counter'''
+# from collections import Counter
+# li = [1,1,2,2,2,3,3,3,3]
+# print(Counter(li))
+
+'''chainmap'''
+# from collections import ChainMap
+# dic1 = {'a':1, 'b':3}
+# dic2 = {'a':2, 'b':3}
+# dic3 = {'a':1, 'b':3}
+# chainedDict = ChainMap(dic1, dic2, dic3)
+# # print(chainedDict['a'])
+# # chainedDict.new_child(dic1)
+# print(chainedDict.values())
+
+'''deque'''
+# from collections import deque
+# # initializing deque
+# de = deque([1, 2, 3])
+# # using append() to insert element at right end
+# # inserts 4 at the end of deque
+# de.append(4)
+# # printing modified deque
+# # using appendleft() to insert element at right end
+# # inserts 6 at the beginning of deque
+# de.appendleft(6)
+# # printing modified deque
+# print(de)
+
+'''fibonacci series'''
+# 0,1,1,2,3,5,8,13
+# def fib(n):
+#     if n < 2:
+#         return n
+#     else:
+#         return  fib(n-2) + fib(n-1)
+#
+# print(fib(6))

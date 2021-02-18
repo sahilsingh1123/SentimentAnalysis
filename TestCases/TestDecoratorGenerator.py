@@ -1,3 +1,4 @@
+import django.views.generic
 #generators --> it wont keep the data in memory so it is faster and memory efficient.
 def square(nums):
     for i in nums:
